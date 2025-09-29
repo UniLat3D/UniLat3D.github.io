@@ -300,6 +300,21 @@ video {
     /* white-space: nowrap; */
 }
 
+.authors-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* 自动换行 */
+    gap: 10px 20px;
+    /* 上下/左右间距 */
+    justify-content: flex-start;
+}
+
+.authors-container a {
+    flex: 0 0 calc(20% - 20px);
+    /* 每行 5 个，大约 20% 宽度 */
+    white-space: nowrap;
+}
+
 #authors div {
     margin: 0px 16px;
 }
