@@ -127,7 +127,18 @@
                 (Note: This is the only official webpage for the TRELLIS project)
             </i></div> -->
         <div id="teaser">
-            <div style="width: 40%;"><video autoplay="" playsinline="" loop="" muted="" src="./page_files/teaser.mp4"></video></div>
+            <div style="width: 40%;"><video autoplay="" playsinline="" loop="" muted="" src="./page_files/demo_4.mp4"></video></div>
+            <script>
+                const video = document.getElementById("demo-video");
+                video.addEventListener("click", () => {
+                    if (video.muted) {
+                        video.muted = false; // 取消静音
+                        video.play(); // 重新播放（有声音）
+                    } else {
+                        video.muted = true; // 再点一次切回静音
+                    }
+                });
+            </script>
         </div>
         <!-- <div style="width: 100%; aspect-ratio: 16/9">
             <iframe src="test_synced.html?video=page_files/demo_3.mp4" style="width: 100%; height: 100%; border: none;"></iframe>
@@ -153,7 +164,21 @@
             and enables TRELLIS to achieve superior performance in few-step 3D generation. -->
         </div>
         <div id="teaser">
-            <div style="width: 100%;"><video autoplay="" playsinline="" loop="" muted="" src="./page_files/demo_3.mp4"></video></div>
+            <div style="width: 100%;">
+                <video id="demo-video" autoplay playsinline loop muted src="./page_files/teaser.mp4" width="600"></video>
+                <script>
+                    const video = document.getElementById("demo-video");
+                    video.addEventListener("click", () => {
+                        if (video.muted) {
+                            video.muted = false; // 取消静音
+                            video.play(); // 重新播放（有声音）
+                        } else {
+                            video.muted = true; // 再点一次切回静音
+                        }
+                    });
+                </script>
+
+            </div>
         </div>
         <!-- <p class="x-note">
             <i><sup>*</sup>Note <b>only in this page</b> the loaded meshes are simplfied and hole-filled, and their textures are baked from generated GS. This is for the convenience of visualization.
