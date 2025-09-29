@@ -35,10 +35,6 @@ var txt2_items = [
 
 
 var img2_items = [
-    { video: "0.mp4", prompt: "0.png", model: "0.glb", source: "DALL-E 3", alt: "A detailed trellis structure" },
-    { video: "1.mp4", prompt: "1.png", model: "1.glb", source: "DALL-E 3", alt: "A machine for processing paper" },
-    { video: "001.mp4", prompt: "001.png", model: "001.glb", source: "DALL-E 3", alt: "A large sailing ship" },
-    { video: "005.mp4", prompt: "005.png", model: "005.glb", source: "DALL-E 3", alt: "A food cart on a busy street" },
     { video: "007.mp4", prompt: "007.png", model: "007.glb", source: "DALL-E 3", alt: "A mythical Chinese dragon" },
     { video: "9.mp4", prompt: "9.png", model: "9.glb", source: "DALL-E 3", alt: "A futuristic robot 9" },
     { video: "18.mp4", prompt: "18.png", model: "18.glb", source: "DALL-E 3", alt: "A medieval castle with high towers" },
@@ -47,6 +43,13 @@ var img2_items = [
     { video: "51.mp4", prompt: "51.png", model: "51.glb", source: "DALL-E 3", alt: "A police robot" },
     { video: "65.mp4", prompt: "65.png", model: "65.glb", source: "DALL-E 3", alt: "A police robot" },
     { video: "67.mp4", prompt: "67.png", model: "67.glb", source: "DALL-E 3", alt: "A police robot" },
+    { video: "selected_42.mp4", prompt: "selected_42.png", model: "selected_42.glb", source: "DALL-E 3", alt: "A 3D scene of selected_42" },
+    { video: "selected_64.mp4", prompt: "selected_64.png", model: "selected_64.glb", source: "DALL-E 3", alt: "A 3D scene of selected_64" },
+    { video: "selected_65.mp4", prompt: "selected_65.png", model: "selected_65.glb", source: "DALL-E 3", alt: "A 3D scene of selected_65" },
+    { video: "0.mp4", prompt: "0.png", model: "0.glb", source: "DALL-E 3", alt: "A detailed trellis structure" },
+    { video: "1.mp4", prompt: "1.png", model: "1.glb", source: "DALL-E 3", alt: "A machine for processing paper" },
+    { video: "001.mp4", prompt: "001.png", model: "001.glb", source: "DALL-E 3", alt: "A large sailing ship" },
+    { video: "005.mp4", prompt: "005.png", model: "005.glb", source: "DALL-E 3", alt: "A food cart on a busy street" },
     { video: "selected_67.mp4", prompt: "selected_67.png", model: "selected_67.glb", source: "DALL-E 3", alt: "A 3D scene of selected_67" },
     { video: "selected_70.mp4", prompt: "selected_70.png", model: "selected_70.glb", source: "DALL-E 3", alt: "A 3D scene of selected_70" },
     { video: "selected_71.mp4", prompt: "selected_71.png", model: "selected_71.glb", source: "DALL-E 3", alt: "A 3D scene of selected_71" },
@@ -58,6 +61,9 @@ var img2_items = [
     { video: "selected_82.mp4", prompt: "selected_82.png", model: "selected_82.glb", source: "DALL-E 3", alt: "A 3D scene of selected_82" },
     { video: "selected_83.mp4", prompt: "selected_83.png", model: "selected_83.glb", source: "DALL-E 3", alt: "A 3D scene of selected_83" },
     { video: "selected_14.mp4", prompt: "selected_14.png", model: "selected_14.glb", source: "DALL-E 3", alt: "A police robot" },
+    { video: "selected_56.mp4", prompt: "selected_56.png", model: "selected_56.glb", source: "DALL-E 3", alt: "A 3D scene of selected_56" },
+    { video: "selected_62.mp4", prompt: "selected_62.png", model: "selected_62.glb", source: "DALL-E 3", alt: "A 3D scene of selected_62" },
+    { video: "selected_63.mp4", prompt: "selected_63.png", model: "selected_63.glb", source: "DALL-E 3", alt: "A 3D scene of selected_63" },
 
     // 新增的 selected 系列
     { video: "selected_4.mp4", prompt: "selected_4.png", model: "selected_4.glb", source: "DALL-E 3", alt: "A 3D scene of selected_4" },
@@ -75,12 +81,6 @@ var img2_items = [
     { video: "selected_31.mp4", prompt: "selected_31.png", model: "selected_31.glb", source: "DALL-E 3", alt: "A 3D scene of selected_31" },
     { video: "selected_32.mp4", prompt: "selected_32.png", model: "selected_32.glb", source: "DALL-E 3", alt: "A 3D scene of selected_32" },
     { video: "selected_37.mp4", prompt: "selected_37.png", model: "selected_37.glb", source: "DALL-E 3", alt: "A 3D scene of selected_37" },
-    { video: "selected_42.mp4", prompt: "selected_42.png", model: "selected_42.glb", source: "DALL-E 3", alt: "A 3D scene of selected_42" },
-    { video: "selected_56.mp4", prompt: "selected_56.png", model: "selected_56.glb", source: "DALL-E 3", alt: "A 3D scene of selected_56" },
-    { video: "selected_62.mp4", prompt: "selected_62.png", model: "selected_62.glb", source: "DALL-E 3", alt: "A 3D scene of selected_62" },
-    { video: "selected_63.mp4", prompt: "selected_63.png", model: "selected_63.glb", source: "DALL-E 3", alt: "A 3D scene of selected_63" },
-    { video: "selected_64.mp4", prompt: "selected_64.png", model: "selected_64.glb", source: "DALL-E 3", alt: "A 3D scene of selected_64" },
-    { video: "selected_65.mp4", prompt: "selected_65.png", model: "selected_65.glb", source: "DALL-E 3", alt: "A 3D scene of selected_65" },
 
 ];
 

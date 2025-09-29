@@ -1,4 +1,4 @@
 window.onload = function() {
     initWindow();
-    make_carousel('results-img2', img2_carousel_item_template, img2_items, 4, 4);
+    make_carousel('results-img2', img2_carousel_item_template, img2_items, 2, 4);
 };
