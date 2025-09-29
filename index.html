@@ -126,16 +126,13 @@
         <!-- <div class="x-center-text" style="font-size: 18px; font-weight: 600; color: #7a0e0e;"><i>
                 (Note: This is the only official webpage for the TRELLIS project)
             </i></div> -->
-        <!-- <div id="teaser">
-                <div style="width: 100%;"><video autoplay="" playsinline="" loop="" muted="" src="./unilat3d_files/demo_video.mp4"></video></div>
-            </div> -->
-        <div style="width: 100%; aspect-ratio: 16/9">
-            <iframe src="test_synced.html?video=page_files/teaser.mp4" style="width: 100%; height: 100%; border: none;"></iframe>
+        <div id="teaser">
+            <div style="width: 100%;"><video autoplay="" playsinline="" loop="" muted="" src="./page_files/demo_3.mp4"></video></div>
         </div>
-        <!-- <div class="x-center-text" style="font-size: 20px; font-weight: 500; color: #3f3f3f;">
-                <b>TL;DR:</b> A native 3D generative model built on a <i><b>unified Structured Latent representation</b></i> and <i><b>Rectified Flow Transformers</b></i>,
-                    enabling versatile and high-quality 3D asset creation.
-            </div> -->
+        <!-- <div style="width: 100%; aspect-ratio: 16/9">
+            <iframe src="test_synced.html?video=page_files/demo_3.mp4" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div> -->
+
         <div id="abstract" class="x-gradient-block">
             High-fidelity 3D asset generation is crucial for various industries. While recent 3D pretrained models show strong capability in producing realistic content, most are built upon diffusion models and follow a two-stage pipeline that first generates geometry
             and then synthesizes appearance. Such a decoupled design tends to produce geometry–texture misalignment and non-negligible cost. In this paper, we propose <b>UniLat3D</b>, a unified framework that encodes geometry and appearance
@@ -421,44 +418,42 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="x-section-title">
+            <div class="x-gradient-font">Methodology</div>
+        </div>
+        <p>
+            <img src="./page_files/pipeline.png" alt="Pipeline of the method" style="width: 100%;">
+        </p>
+        <p>
+            Illustration of the UniLat3D framework. In the reconstruction stage, the encoder of Uni-VAE \(\mathcal{E}_\mathrm{uni}\) converts the 3D asset \(\mathcal{O}\) to the unified latent -- UniLat \(\mathbf{z}_\mathrm{uni}\), which can be directly denoised
+            from noise \(\epsilon\) by a single flow model \(\mathcal{F}_\mathrm{uni}\) in the generation stage. The obtained UniLat can be transformed into target 3D representations by the decoder \(\mathcal{D}_\mathrm{uni}\).
+        </p>
 
 
+        <div class="x-section-title">
+            <div class="x-gradient-font">Citation</div>
+        </div>
+        <p>
+            This project page is based on <a class="link" href="https://microsoft.github.io/TRELLIS/">TRELLIS</a>. We sincerely appreciate the excellent works of these authors. If you find our work useful, please consider citing:
+        </p>
+        <!-- <p class="bibtex x-gradient-block">
+            @article{mdt-dist, title={Few-step Flow for 3D Generation via Marginal-Data Transport Distillation}, author={Zhou, Zanwei and Yi, Taoran and Fang, Jiemin and Yang, Chen and Xie, Lingxi and Wang, Xinggang and Shen, Wei and Tian, Qi} journal={arXiv:2509.04406},
+            year={2025} }
+        </p> -->
 
-                <div class="x-section-title">
-                    <div class="x-gradient-font">Methodology</div>
-                </div>
-                <p>
-                    <img src="./page_files/pipeline.png" alt="Pipeline of the method" style="width: 100%;">
-                </p>
-                <p>
-                    Illustration of the UniLat3D framework. In the reconstruction stage, the encoder of Uni-VAE \(\mathcal{E}_\mathrm{uni}\) converts the 3D asset \(\mathcal{O}\) to the unified latent -- UniLat \(\mathbf{z}_\mathrm{uni}\), which can be directly denoised
-                    from noise \(\epsilon\) by a single flow model \(\mathcal{F}_\mathrm{uni}\) in the generation stage. The obtained UniLat can be transformed into target 3D representations by the decoder \(\mathcal{D}_\mathrm{uni}\).
-                </p>
+        <div id="fullscreen">
+            <div id="window">
+                <div id="close" onclick="closeWindow()">✕</div>
+                <div id="content"></div>
+            </div>
+        </div>
 
-                <div class="x-section-title">
-                    <div class="x-gradient-font">Supplementary Video</div>
-                </div>
-                <div style="width: 100%; aspect-ratio: 16/9">
-                    <video controls="" muted="" height="100%" src="./unilat3d_files/demo_2.mp4"></video>
-                </div>
+    </div>
 
-                <div class="x-section-title">
-                    <div class="x-gradient-font">Citation</div>
-                </div>
-                <p>
-                    This project page is based on <a class="link" href="https://microsoft.github.io/TRELLIS/">TRELLIS</a>. We sincerely appreciate the excellent works of these authors. If you find our work useful, please consider citing:
-                </p>
-                <p class="bibtex x-gradient-block">
-                    <!-- @article{mdt-dist, title={Few-step Flow for 3D Generation via Marginal-Data Transport Distillation}, author={Zhou, Zanwei and Yi, Taoran and Fang, Jiemin and Yang, Chen and Xie, Lingxi and Wang, Xinggang and Shen, Wei and Tian, Qi} journal={arXiv:2509.04406},
-                    year={2025} } -->
-                </p>
 
-                <div id="fullscreen">
-                    <div id="window">
-                        <div id="close" onclick="closeWindow()">✕</div>
-                        <div id="content"></div>
-                    </div>
-                </div>
 </body>
 <grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
       div.grammarly-desktop-integration {
