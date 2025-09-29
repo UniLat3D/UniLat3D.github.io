@@ -1,0 +1,471 @@
+<!-- saved from url=(0036)https://microsoft.github.io/TRELLIS/ -->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniLat3D: Geometry-Appearance Unified Latents for Single-Stage 3D Generation</title>
+    <link rel="icon" href="./assets_unilat3d/icon/logo.png">
+    <link rel="stylesheet" href="./unilat3d_files/stylesheet.css">
+    <link rel="stylesheet" href="./unilat3d_files/stylesheet(1).css">
+    <link rel="stylesheet" href="./unilat3d_files/style.css">
+    <link rel="stylesheet" href="./unilat3d_files/window.css">
+    <link rel="stylesheet" href="./unilat3d_files/carousel.css">
+    <link rel="stylesheet" href="./unilat3d_files/selection_panel.css">
+    <link rel="stylesheet" href="./unilat3d_files/main.css">
+    <link rel="stylesheet" href="./unilat3d_files/katex.min.css">
+    <script defer src="./unilat3d_files/katex.min.js"></script>
+    <script defer src="./unilat3d_files/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <script src="./unilat3d_files/window.js.download"></script>
+    <script src="./unilat3d_files/carousel.js.download"></script>
+    <script src="./unilat3d_files/selection_panel.js.download"></script>
+    <script src="./unilat3d_files/generation.js"></script>
+    <script src="./unilat3d_files/editing.js.download"></script>
+    <script src="./unilat3d_files/application.js.download"></script>
+    <script src="./unilat3d_files/main.js.download"></script>
+
+    <!-- <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script> -->
+    <script type="module" src="./unilat3d_files/model-viewer.min.js"></script>
+</head>
+
+
+<body data-new-gr-c-s-check-loaded="14.1251.0" data-gr-ext-installed="">
+    <div id="main">
+        <!-- <div id="logo">
+                <video autoplay="" playsinline="" loop="" muted="" src="assets/logo.mp4" poster="assets/logo.jpg"></video>*
+            </div> -->
+        <div id="title" class="x-gradient-font">
+            <!-- <span style="font-size: 43px;">Few-step Flow for 3D Generation via Marginal-Data Transport Distillation</span> -->
+            <span style="font-size: 43px;">UniLat3D: Geometry-Appearance Unified Latents for Single-Stage 3D Generation</span><br>
+            <!-- <span style="font-size: 43px;">Marginal-Data Transport Distillation</span> -->
+        </div>
+        <div id="authors">
+            <div><a class="link" href="https://guanjunwu.github.io">Guanjun Wu</a><sup>1,2*</sup></div>
+            <div><a class="link" href="https://jaminfong.cn/">Jiemin Fang</a><sup>1,*&dagger;</sup></div>
+            <div><a class="link" href="https://chensjtu.github.io/">Chen Yang</a><sup>1*</sup></div>
+            <div><a class="link" href="https://scholar.google.com/citations?user=2dCJlg4AAAAJ&hl=zh-CN">Sikuang Li</a><sup>3</sup></div>
+            <div><a class="link" href="http://lingxixie.com/Home.html">Taoran Yi</a><sup>2</sup></div>
+            <div><a class="link" href="https://github.com/lujzz">Jia Lu</a><sup>2</sup></div>
+            <div><a class="link" href="https://github.com/Zanue">Zanwei Zhou</a><sup>3</sup></div>
+            <div><a class="link" href="https://jumpat.github.io/jumpcat/">Jiazhong Cen</a><sup>3</sup></div>
+            <div><a class="link" href="http://lingxixie.com/Home.html">Lingxi Xie</a><sup>1</sup></div>
+            <div><a class="link" href="https://sites.google.com/site/zxphistory/">Xiaopeng Zhang</a><sup>1</sup></div>
+            <div><a class="link" href="https://www.eric-weiwei.com/">Wei Wei</a><sup>2</sup></div>
+            <div><a class="link" href="https://eic.hust.edu.cn/professor/liuwenyu/">Wenyu Liu</a><sup>2</sup></div>
+            <div><a class="link" href="https://xwcv.github.io/">Xinggang Wang</a><sup>2</sup></div>
+            <div><a class="link" href="https://www.qitian1987.com/">Qi Tian</a><sup>3,&dagger;</sup></div>
+        </div>
+        <div id="institution">
+            <div><sup>1</sup><a class="link" href="https://www.huawei.com/en/">Huawei Inc.</a></div>
+            <div><sup>2</sup><a class="link" href="https://english.hust.edu.cn/">Huazhong University of Science and Technology</a></div>
+            <div><sup>3</sup><a class="link" href="https://en.sjtu.edu.cn/">Shanghai Jiao Tong University</a></div>
+
+
+        </div>
+        <p style="text-align:center;"><sup>*</sup>Equal contribution. &nbsp; <sup>&dagger;</sup>Corresponding author.</p>
+        <!-- <div class="x-center-text" style="font-size: 20px; font-weight: 700; color: #5f5f5f;">
+                ArXiv 2025
+            </div> -->
+        <div id="links">
+            <div class="publication-links">
+                <span class="link-block">
+                    <a href="https://arxiv.org/pdf/2509.04406" class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4M10 10V12H18V10H10M10 14V16H15V14H10Z"></path>
+                            </svg>
+                        </span>
+                <span>Paper</span>
+                </a>
+                </span>
+
+                <span class="link-block">
+                    <a href="https://arxiv.org/abs/2509.04406" class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                            <img src="./assets_unilat3d/icon/arxiv.svg" style="height: 24px;">
+                        </span>
+                <span>arXiv</span>
+
+                </a>
+                </span>
+                <span class="link-block">
+                    <a href="https://github.com/UniLat3D/UniLat3D" class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="width:24px;height:24px" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 
+                                1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 
+                                3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 
+                                2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                            </svg>
+                        </span>
+                <span>Code</span>
+                </a>
+                </span>
+                <!-- <span class="link-block">
+                    <a id="demo" href="https://huggingface.co/spaces/Microsoft/TRELLIS" class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                            <svg class="svg-inline--fa fa-rocket fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rocket" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path fill="currentColor" d="M505.12019,19.09375c-1.18945-5.53125-6.65819-11-12.207-12.1875C460.716,0,435.507,0,410.40747,0,307.17523,0,245.26909,55.20312,199.05238,128H94.83772c-16.34763.01562-35.55658,11.875-42.88664,26.48438L2.51562,253.29688A28.4,28.4,0,0,0,0,264a24.00867,24.00867,0,0,0,24.00582,24H127.81618l-22.47457,22.46875c-11.36521,11.36133-12.99607,32.25781,0,45.25L156.24582,406.625c11.15623,11.1875,32.15619,13.15625,45.27726,0l22.47457-22.46875V488a24.00867,24.00867,0,0,0,24.00581,24,28.55934,28.55934,0,0,0,10.707-2.51562l98.72834-49.39063c14.62888-7.29687,26.50776-26.5,26.50776-42.85937V312.79688c72.59753-46.3125,128.03493-108.40626,128.03493-211.09376C512.07526,76.5,512.07526,51.29688,505.12019,19.09375ZM384.04033,168A40,40,0,1,1,424.05,128,40.02322,40.02322,0,0,1,384.04033,168Z"></path>
+                            </svg>
+                        </span>
+                        <span>Demo</span>
+                    </a>
+                </span> -->
+            </div>
+        </div>
+        <div class="x-center-text" style="font-size: 20px; font-weight: 500; color: #3f3f3f;">
+            We propose <b>UniLat3D</b>, a novel <b>one-stage 3D generation framework</b>, which unifies geometry and appearance in a compact latent representation, achieving superior performance than common two-stage 3D generation models.
+            <!-- We propose <b>Marginal-Data Transport Distillation</b> to speed up the 3D generation model (i.e. TRELLIS) to only <b>1-2 steps</b>, which can generate a 3D asset in <b>0.68s on one A800 GPU</b> with both appearance and geometry. -->
+        </div>
+        <!-- <div class="x-center-text" style="font-size: 18px; font-weight: 600; color: #7a0e0e;"><i>
+                (Note: This is the only official webpage for the TRELLIS project)
+            </i></div> -->
+        <!-- <div id="teaser">
+                <div style="width: 100%;"><video autoplay="" playsinline="" loop="" muted="" src="./unilat3d_files/demo_video.mp4"></video></div>
+            </div> -->
+        <div style="width: 100%; aspect-ratio: 16/9">
+            <iframe src="test_synced.html?video=page_files/teaser.mp4" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        <!-- <div class="x-center-text" style="font-size: 20px; font-weight: 500; color: #3f3f3f;">
+                <b>TL;DR:</b> A native 3D generative model built on a <i><b>unified Structured Latent representation</b></i> and <i><b>Rectified Flow Transformers</b></i>,
+                    enabling versatile and high-quality 3D asset creation.
+            </div> -->
+        <div id="abstract" class="x-gradient-block">
+            High-fidelity 3D asset generation is crucial for various industries. While recent 3D pretrained models show strong capability in producing realistic content, most are built upon diffusion models and follow a two-stage pipeline that first generates geometry
+            and then synthesizes appearance. Such a decoupled design tends to produce geometry–texture misalignment and non-negligible cost. In this paper, we propose <b>UniLat3D</b>, a unified framework that encodes geometry and appearance
+            in a single latent space, enabling direct single-stage generation. Our key contribution is a geometry–appearance Unified VAE, which compresses high-resolution sparse features into a compact latent representation -- UniLat. UniLat integrates
+            structural and visual information into a dense low-resolution latent, which can be efficiently decoded into diverse 3D formats, e.g., 3D Gaussians and meshes. Based on this unified representation, we train a single flow-matching model to map
+            Gaussian noise directly into UniLat, eliminating redundant stages. Trained solely on public datasets, UniLat3D produces high-quality 3D assets in seconds from a single image, achieving superior appearance fidelity and geometric quality.
+
+
+            <!-- Flow-based 3D generation models typically require dozens of sampling steps during inference. Though few-step distillation methods, particularly Consistency Models (CMs), have achieved substantial advancements in accelerating 2D diffusion models, they
+            remain under-explored for more complex 3D generation tasks. In this study, we propose a novel framework, <span style="font-size: 16px; font-weight: 600;">MDT-dist</span>, for few-step 3D flow distillation. Our approach is built
+            upon a primary objective:
+            <span style="font-size: 16px; font-weight: 600;">dist</span>illing the pretrained model to learn the
+            <span style="font-size: 16px; font-weight: 600;">M</span>arginal-<span style="font-size: 16px; font-weight: 600;">D</span>ata <span style="font-size: 16px; font-weight: 600;">T</span>ransport. Directly learning this objective needs to integrate
+            the velocity fields, while this integral is intractable to be implemented. Therefore, we propose two optimizable objectives, Velocity Matching (VM) and Velocity Distillation (VD), to equivalently convert the optimization target from the transport
+            level to the velocity and the distribution level respectively. Velocity Matching (VM) learns to stably match the velocity fields between the student and the teacher, but inevitably provides biased gradient estimates. Velocity Distillation
+            (VD) further enhances the optimization process by leveraging the learned velocity fields to perform probability density distillation. When evaluated on the pioneer 3D generation framework TRELLIS, our method reduces sampling steps of each
+            flow transformer from 25 to 1–2, achieving <span style="font-size: 16px; font-weight: 600;">0.68s</span> (1 step x2) and <span style="font-size: 16px; font-weight: 600;">0.94s</span> (2 steps x2) latency with <span style="font-size: 16px; font-weight: 600;">9.0x</span>            and <span style="font-size: 16px; font-weight: 600;">6.5x</span> speedup on A800, while preserving high visual and geometric fidelity. Extensive experiments demonstrate that our method significantly outperforms existing CM distillation methods,
+            and enables TRELLIS to achieve superior performance in few-step 3D generation. -->
+        </div>
+
+        <p class="x-note">
+            <i><sup>*</sup>Note <b>only in this page</b> the loaded meshes are simplfied and hole-filled, and their textures are baked from generated GS. This is for the convenience of visualization.
+                The videos here are rendered from GS. Currently we are working on the GS viewer, the original GS and unprocessed meshes will be released later. 
+                Click on the cards to view extracted GLB files.</i>
+        </p>
+        <div class="x-section-title">
+            <div class="x-gradient-font">Generation <span style="font-size: 40px; font-weight:600;"></span></div>
+        </div>
+        <p>Click on the cards to view extracted GLB files.</p>
+        <div id="results-img2">
+            <div class="x-carousel-slider">
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;0.mp4&quot;,&quot;prompt&quot;:&quot;0.png&quot;,&quot;model&quot;:&quot;0.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A detailed trellis structure&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/0.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/0.png" alt="A detailed trellis structure">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;typical_humanoid_dwarf.mp4&quot;,&quot;prompt&quot;:&quot;typical_humanoid_dwarf.png&quot;,&quot;model&quot;:&quot;1.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A machine for processing paper&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/1.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/1.png" alt="A machine for processing paper">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;001.mp4&quot;,&quot;prompt&quot;:&quot;001.png&quot;,&quot;model&quot;:&quot;001.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/001.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/001.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;005.mp4&quot;,&quot;prompt&quot;:&quot;005.png&quot;,&quot;model&quot;:&quot;005.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/005.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/005.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;007.mp4&quot;,&quot;prompt&quot;:&quot;007.png&quot;,&quot;model&quot;:&quot;007.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/007.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/005.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;9.mp4&quot;,&quot;prompt&quot;:&quot;9.png&quot;,&quot;model&quot;:&quot;9.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/9.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/9.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;18.mp4&quot;,&quot;prompt&quot;:&quot;18.png&quot;,&quot;model&quot;:&quot;18.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/18.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/18.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;024.mp4&quot;,&quot;prompt&quot;:&quot;024.png&quot;,&quot;model&quot;:&quot;024.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/024.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/024.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;41.mp4&quot;,&quot;prompt&quot;:&quot;41.png&quot;,&quot;model&quot;:&quot;41.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/024.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/024.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;51.mp4&quot;,&quot;prompt&quot;:&quot;51.png&quot;,&quot;model&quot;:&quot;51.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/51.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/51.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;65.mp4&quot;,&quot;prompt&quot;:&quot;65.png&quot;,&quot;model&quot;:&quot;65.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/65.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/65.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;67.mp4&quot;,&quot;prompt&quot;:&quot;67.png&quot;,&quot;model&quot;:&quot;67.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/67.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/67.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;selected_14.mp4&quot;,&quot;prompt&quot;:&quot;selected_14.png&quot;,&quot;model&quot;:&quot;selected_14.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/selected_14.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/selected_14.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;selected_64.mp4&quot;,&quot;prompt&quot;:&quot;selected_64.png&quot;,&quot;model&quot;:&quot;selected_64.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/selected_64.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/selected_64.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;selected_66.mp4&quot;,&quot;prompt&quot;:&quot;selected_66.png&quot;,&quot;model&quot;:&quot;selected_66.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/selected_66.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/selected_66.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x-carousel-slider-item" style="flex-basis: calc(100% / 4);">
+                    <div class="x-card clickable" style="min-width: 120px" onclick="openWindow(img2_window_template({&quot;exposure&quot;:&quot;2.0&quot;,&quot;video&quot;:&quot;selected_71.mp4&quot;,&quot;prompt&quot;:&quot;selected_71.png&quot;,&quot;model&quot;:&quot;selected_71.glb&quot;,&quot;source&quot;:&quot;DALL-E 3&quot;,&quot;alt&quot;:&quot;A large sailing ship&quot;}))">
+                        <div class="x-labels">
+                            <div class="x-label">GLB ✓</div>
+                        </div>
+                        <div style="width: 100%; aspect-ratio: 3/2">
+                            <video autoplay="" playsinline="" loop="" muted="" height="100%" src="./assets_unilat3d/videos/selected_71.mp4"></video>
+                        </div>
+                        <div class="caption">
+                            <div class="x-image-prompt">
+                                <img src="./assets_unilat3d/imgs/selected_71.png" alt="A large sailing ship">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="x-section-title">
+                    <div class="x-gradient-font">Methodology</div>
+                </div>
+                <p>
+                    <img src="./page_files/pipeline.png" alt="Pipeline of the method" style="width: 100%;">
+                </p>
+                <p>
+                    Illustration of the UniLat3D framework. In the reconstruction stage, the encoder of Uni-VAE \(\mathcal{E}_\mathrm{uni}\) converts the 3D asset \(\mathcal{O}\) to the unified latent -- UniLat \(\mathbf{z}_\mathrm{uni}\), which can be directly denoised
+                    from noise \(\epsilon\) by a single flow model \(\mathcal{F}_\mathrm{uni}\) in the generation stage. The obtained UniLat can be transformed into target 3D representations by the decoder \(\mathcal{D}_\mathrm{uni}\).
+                </p>
+
+                <div class="x-section-title">
+                    <div class="x-gradient-font">Supplementary Video</div>
+                </div>
+                <div style="width: 100%; aspect-ratio: 16/9">
+                    <video controls="" muted="" height="100%" src="./unilat3d_files/demo_2.mp4"></video>
+                </div>
+
+                <div class="x-section-title">
+                    <div class="x-gradient-font">Citation</div>
+                </div>
+                <p>
+                    This project page is based on <a class="link" href="https://microsoft.github.io/TRELLIS/">TRELLIS</a>. We sincerely appreciate the excellent works of these authors. If you find our work useful, please consider citing:
+                </p>
+                <p class="bibtex x-gradient-block">
+                    @article{mdt-dist, title={Few-step Flow for 3D Generation via Marginal-Data Transport Distillation}, author={Zhou, Zanwei and Yi, Taoran and Fang, Jiemin and Yang, Chen and Xie, Lingxi and Wang, Xinggang and Shen, Wei and Tian, Qi} journal={arXiv:2509.04406},
+                    year={2025} }
+                </p>
+
+                <div id="fullscreen">
+                    <div id="window">
+                        <div id="close" onclick="closeWindow()">✕</div>
+                        <div id="content"></div>
+                    </div>
+                </div>
+</body>
+<grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration>
+
+</html>
