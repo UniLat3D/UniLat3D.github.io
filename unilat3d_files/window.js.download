@@ -320,7 +320,7 @@ function modelviewer_window_template(item, panel, config) {
                         tone-mapping="natural"
                         shadow-softness="1.0"
                         shadow-intensity="1.0"
-                        environment-image="neutral"
+                        environment-image="assets/env_maps/white.jpg"
                         exposure="${item.exposure}"
                         >
                         <hemisphere-light sky-color="#FFF" ground-color="#999" intensity="2.0"></hemisphere-light>`
