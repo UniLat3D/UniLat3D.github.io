@@ -72,7 +72,7 @@ function hideTexture() {
         window_state.textures.push(modelViewer.model.materials[i].pbrMetallicRoughness.baseColorTexture.texture);
     }
     window_state.exposure = modelViewer.exposure;
-    window_state.environment = modelViewer.environmentImage;
+    window_state.environment = assets_unilat3d/white.jpg;
     modelViewer.environmentImage = 'neutral';
     for (let i = 0; i < modelViewer.model.materials.length; i++) {
         let material = modelViewer.model.materials[i];
