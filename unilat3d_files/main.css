@@ -288,10 +288,10 @@ video {
 }
 
 #authors {
-    width: 80%;
+    width: 70%;
     margin: 8px auto;
     color: black;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -302,7 +302,7 @@ video {
 
 .authors-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     /* 自动换行 */
     gap: 10px 20px;
     /* 上下/左右间距 */
@@ -310,13 +310,13 @@ video {
 }
 
 .authors-container a {
-    flex: 0 0 calc(20% - 20px);
+    flex: 0 0 calc(10% - 10px);
     /* 每行 5 个，大约 20% 宽度 */
     white-space: nowrap;
 }
 
 #authors div {
-    margin: 0px 16px;
+    margin: 0px 5px;
 }
 
 #institution {
