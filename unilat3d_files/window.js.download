@@ -72,7 +72,8 @@ function hideTexture() {
         window_state.textures.push(modelViewer.model.materials[i].pbrMetallicRoughness.baseColorTexture.texture);
     }
     window_state.exposure = modelViewer.exposure;
-    modelViewer.environmentImage = assets_unilat3d/gradient.jpg;
+    window_state.environment = modelViewer.environmentImage;
+    modelViewer.environmentImage = 'neutral';
     for (let i = 0; i < modelViewer.model.materials.length; i++) {
         let material = modelViewer.model.materials[i];
         material.pbrMetallicRoughness.baseColorTexture.setTexture(null);
@@ -94,7 +95,7 @@ function showTexture() {
     geometryButton.classList.remove('checked');
     let modelViewer = document.getElementById('modelviewer');
     if (modelViewer.model.materials[0].pbrMetallicRoughness.baseColorTexture.texture !== null) return;
-    modelViewer.environmentImage = assets_unilat3d/white.jpg;
+    modelViewer.environmentImage = window_state.environment || 'neutral';
     for (let i = 0; i < modelViewer.model.materials.length; i++) {
         let material = modelViewer.model.materials[i];
         material.pbrMetallicRoughness.baseColorTexture.setTexture(window_state.textures[i]);
