@@ -262,7 +262,7 @@ video {
 #main {
     max-width: 1000px;
     margin: 0px auto;
-    padding-top: 100px;
+    padding-top: 10px;
     padding-bottom: 200px;
 }
 
@@ -283,13 +283,14 @@ video {
     color: black;
     font-size: 54px;
     font-weight: 700;
+    line-height: 110%;
     /* white-space: nowrap; */
     text-align: center;
 }
 
 #authors {
     width: 70%;
-    margin: 8px auto;
+    margin: 18px auto;
     color: black;
     font-size: 17px;
     font-weight: 500;
@@ -297,6 +298,7 @@ video {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    line-height: 80%;
     /* white-space: nowrap; */
 }
 
