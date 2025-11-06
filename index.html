@@ -60,17 +60,20 @@
 
 
         <div id="institution" class="institution">
-            <div><sup>1</sup>Huawei Inc.</a></div>
-            <div><sup>2</sup>Huazhong University of Science and Technology</a></div>
-            <div><sup>3</sup>Shanghai Jiao Tong University</a></div>
-        </div> 
-        
+            <div><sup>1</sup>Huawei Inc.</a>
+            </div>
+            <div><sup>2</sup>Huazhong University of Science and Technology</a>
+            </div>
+            <div><sup>3</sup>Shanghai Jiao Tong University</a>
+            </div>
+        </div>
+
         <!-- <div id="institution" class="institution">
             <div><sup>1</sup><a class="link" href="https://www.huawei.com/en/">Huawei Inc.</a></div>
             <div><sup>2</sup><a class="link" href="https://english.hust.edu.cn/">Huazhong University of Science and Technology</a></div>
             <div><sup>3</sup><a class="link" href="https://en.sjtu.edu.cn/">Shanghai Jiao Tong University</a></div>
         </div> -->
-        
+
         <p style="text-align:center;"><sup>*</sup>Equal contribution. &nbsp; <sup>✉</sup>Corresponding author.</p>
         <div id="links">
             <div class="publication-links">
@@ -92,6 +95,8 @@
                         </span>
                 <span>arXiv</span>
 
+
+
                 </a>
                 </span>
                 <span class="link-block">
@@ -107,6 +112,15 @@
                 <span>Code</span>
                 </a>
                 </span>
+
+                <span class="link-block">
+                    <a href="https://huggingface.co/spaces/UniLat3D/UniLat3D" class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                            <img src="./assets_unilat3d/icon/hf-logo.svg" style="height: 24px;">
+                        </span>
+                <span>Live Demo</span>
+                </a>
+                </span>
             </div>
         </div>
 
@@ -117,21 +131,25 @@
         <div class="columns is-centered has-text-centered">
             <div class="column is-four-fifths">
                 <div class="text-center">
-                <div style="position:relative;padding-top:56.25%;">
-                    <iframe src="https://www.youtube.com/embed/bn5_HwHNCN8" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-                </div>
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="https://www.youtube.com/embed/bn5_HwHNCN8" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div id="abstract" class="x-gradient-block">
-            High-fidelity 3D asset generation is crucial for various industries. While recent 3D pretrained models show strong capability in producing realistic content, most are built upon diffusion models and follow a two-stage pipeline that first generates geometry and then synthesizes appearance. Such a decoupled design tends to produce geometry–texture misalignment and non-negligible cost. In this paper, we propose <b>UniLat3D</b>, a unified framework that encodes geometry and appearance in a single latent space, enabling direct single-stage generation. Our key contribution is a geometry–appearance Unified VAE, which compresses high-resolution sparse features into a compact latent representation -- UniLat. UniLat integrates structural and visual information into a dense low-resolution latent, which can be efficiently decoded into diverse 3D formats, e.g., 3D Gaussians and meshes. Based on this unified representation, we train a single flow-matching model to map Gaussian noise directly into UniLat, eliminating redundant stages. Trained solely on public datasets, UniLat3D produces high-quality 3D assets in seconds from a single image, achieving superior appearance fidelity and geometric quality.
+            High-fidelity 3D asset generation is crucial for various industries. While recent 3D pretrained models show strong capability in producing realistic content, most are built upon diffusion models and follow a two-stage pipeline that first generates geometry
+            and then synthesizes appearance. Such a decoupled design tends to produce geometry–texture misalignment and non-negligible cost. In this paper, we propose <b>UniLat3D</b>, a unified framework that encodes geometry and appearance
+            in a single latent space, enabling direct single-stage generation. Our key contribution is a geometry–appearance Unified VAE, which compresses high-resolution sparse features into a compact latent representation -- UniLat. UniLat integrates
+            structural and visual information into a dense low-resolution latent, which can be efficiently decoded into diverse 3D formats, e.g., 3D Gaussians and meshes. Based on this unified representation, we train a single flow-matching model to map
+            Gaussian noise directly into UniLat, eliminating redundant stages. Trained solely on public datasets, UniLat3D produces high-quality 3D assets in seconds from a single image, achieving superior appearance fidelity and geometric quality.
         </div>
 
         <div id="teaser">
-        <div class="x-center-text" style="font-size: 18px; font-weight: 500; color: #3f3f3f;">
-            Comparing with previous methods which first generate (coarse) geometry and then appearance, UniLat3D generates 3D assets in just one single stage with one flow model by directly predicts the unified latents. 
-        </div>
+            <div class="x-center-text" style="font-size: 18px; font-weight: 500; color: #3f3f3f;">
+                Comparing with previous methods which first generate (coarse) geometry and then appearance, UniLat3D generates 3D assets in just one single stage with one flow model by directly predicts the unified latents.
+            </div>
             <div style="width: 80%;">
                 <video id="demo-video" autoplay playsinline loop muted src="./page_files/teaser.mp4" width="600"></video>
                 <script>
@@ -150,12 +168,12 @@
         </div>
 
         <div style="text-align: center;">
-        <div class="x-center-text" style="font-size: 18px; font-weight: 500; color: #3f3f3f;">
-            UniLat3D achieves high generation quality (\(\footnotesize{\mathrm{FD_{DINOv2}\downarrow}}\)) while enjoying notable efficiency.
-        </div>
+            <div class="x-center-text" style="font-size: 18px; font-weight: 500; color: #3f3f3f;">
+                UniLat3D achieves high generation quality (\(\footnotesize{\mathrm{FD_{DINOv2}\downarrow}}\)) while enjoying notable efficiency.
+            </div>
             <img src="./page_files/comparison.jpg" alt="comparisons" style="width: 45%;">
         </div>
-        
+
 
 
         <div class="x-section-title">
@@ -320,12 +338,8 @@
             We sincerely appreciate the excellent works of these authors. If you find our work useful, please consider citing:
         </p>
         <p class="bibtex x-gradient-block">
-@article{unilat3d,
-    title={UniLat3D: Geometry-Appearance Unified Latents for Single-Stage 3D Generation},
-    author={Wu, Guanjun and Fang, Jiemin and Yang, Chen and Li, Sikuang and Yi, Taoran and Lu, Jia and Zhou, Zanwei and Cen, Jiazhong and Xie, Lingxi and Zhang, Xiaopeng and Wei, Wei and Liu, Wenyu and Wang, Xinggang and Tian, Qi},
-    journal={arXiv preprint arXiv:2509.25079},
-    year={2025}
-}
+            @article{unilat3d, title={UniLat3D: Geometry-Appearance Unified Latents for Single-Stage 3D Generation}, author={Wu, Guanjun and Fang, Jiemin and Yang, Chen and Li, Sikuang and Yi, Taoran and Lu, Jia and Zhou, Zanwei and Cen, Jiazhong and Xie, Lingxi
+            and Zhang, Xiaopeng and Wei, Wei and Liu, Wenyu and Wang, Xinggang and Tian, Qi}, journal={arXiv preprint arXiv:2509.25079}, year={2025} }
         </p>
 
 
